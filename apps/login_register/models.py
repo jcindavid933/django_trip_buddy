@@ -27,7 +27,7 @@ class UserManager(models.Manager):
         errors = {}
         if not user:
             errors['email'] = 'This email address does not exist'
-        if user and not bcrypt.checkpw(postData['login_password'].encode('utf-8'), user[0].password.encode('utf-8')):
+        if user and not bcrypt.checkpw(postData['login_password'].encode(), user[0].password.encode()):
             errors['password'] = 'Invalid password'
         return errors
 
